@@ -30,9 +30,6 @@ import jakarta.validation.constraints.NotNull;
 @RequestMapping("/restaurant")
 @Validated
 public class RestaurantController {
-	// MENE YAHN CHANGE KIYA HAI
-	//MENE YAHN PR BHI CHANGE KIYA HAI
-	//done again
 	@Autowired
 	private RestaurantService restaurantservice;
 	
