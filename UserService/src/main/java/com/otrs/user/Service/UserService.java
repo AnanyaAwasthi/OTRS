@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.otrs.user.Entity.UserEntity;
 import com.otrs.user.Repository.UserRepository;
 
-import jakarta.validation.Valid;
 
 @Service
 public class UserService {
@@ -43,12 +42,6 @@ public class UserService {
 			throw new Exception("User with "+ user1.getMobile() +" already present");
 		}
 
-		
-		
-		 
-		
-			
-		
 		
 		return getAllUsers();
 	}
