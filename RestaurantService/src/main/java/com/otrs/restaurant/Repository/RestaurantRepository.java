@@ -15,8 +15,8 @@ public interface RestaurantRepository extends JpaRepository<RestaurantEntity,Lon
 	@Query("select rs from RestaurantEntity rs where rs.rRname = :rRname")
 	Optional<List<RestaurantEntity>> findByName(String rRname);
 	
-	@Query("select rs from RestaurantEntity rs where rs.rRaddress = :address")
-	Optional<List<RestaurantEntity>> findByAddress(String address);
+	@Query("select rs from RestaurantEntity rs where rs.rRaddress = :rRaddress")
+	Optional<List<RestaurantEntity>> findByAddress(String rRaddress);
 	
 	
 }

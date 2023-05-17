@@ -41,13 +41,11 @@ public class RestaurantService {
 	
 		  List<RestaurantEntity> rs = reso.get();
 			  if(reso.isPresent()) {
-				  for(int i=0;i<reso.get().size();i++)
-				  {
-					  if((rs.get(i).getrRaddress()).equals(res.getrRaddress()))
-					  {
-						  throw new Exception("Restaurant already present");
-					  }
-				  }
+					
+					  for(int i=0;i<reso.get().size();i++) {
+					  if((rs.get(i).getrRaddress()).equals(res.getrRaddress())) { throw new
+					  Exception("Restaurant already present"); } }
+					 
 			 
 			  }
 			restaurantrepository.save(res);
@@ -83,34 +81,28 @@ public class RestaurantService {
 		return getAllDetails();
 	}
 	
-	public ResponseEntity<?> filterByAddressAndCapacity(String address,int capacity)throws Exception,MethodArgumentNotValidException
+	public ResponseEntity<?> filterByAddressAndCapacity(String rRaddress,int capacity)throws Exception,MethodArgumentNotValidException
 	{
-		
-		Optional <List<RestaurantEntity>> res = restaurantrepository.findByAddress(address);
-		if(!res.isPresent())
-		{
-			throw new Exception("No Restaurants found in "+ address);
-		}
+		Optional <List<RestaurantEntity>> res = restaurantrepository.findByAddress(rRaddress);
 		List<RestaurantEntity>filterByAddress = res.get();
-		Map<String,Integer> FinalList = new HashMap<>();
-		for(int i=0;i<filterByAddress.size();i++)
-		{
-			int count=0;
-			
-			int cap = filterByAddress.get(i).getTableDetails().size();
-			for(int j=0;j<cap;j++)
-			{
-				int checkCapacity = filterByAddress.get(i).getTableDetails().get(j).gettCapacity();
-				Boolean checkStatus = filterByAddress.get(i).getTableDetails().get(j).isOccupied();
-				if(checkCapacity == capacity && !checkStatus)
-				{
-					count++;
-				}
-			}
-			FinalList.put(filterByAddress.get(i).getrRname(), count);
-			
-		}
-		return ResponseEntity.status(HttpStatus.OK).body(FinalList);
+		
+		  if(filterByAddress.isEmpty()) { throw new
+		  Exception("No Restaurants found in "+ rRaddress); }
+		 
+		
+		  Map<String,Integer> FinalList = new HashMap<>(); for(int
+		  i=0;i<filterByAddress.size();i++) { int count=0;
+		  
+		  int cap = filterByAddress.get(i).getTableDetails().size(); for(int
+		  j=0;j<cap;j++) { int checkCapacity =
+		  filterByAddress.get(i).getTableDetails().get(j).gettCapacity(); Boolean
+		  checkStatus = filterByAddress.get(i).getTableDetails().get(j).isOccupied();
+		  if(checkCapacity == capacity && !checkStatus) { count++; } }
+		  FinalList.put(filterByAddress.get(i).getrRname(), count);
+		  
+		  }
+		 
+		return ResponseEntity.status(HttpStatus.OK).body(filterByAddress);
 		
 	}
 	
