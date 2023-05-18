@@ -26,4 +26,10 @@ public class BookingService {
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(allBookings);
 	}
+
+	public ResponseEntity<List<BookingEntity>> addBookings(BookingEntity bookingEntity) throws Exception {
+
+		bookingrepository.save(bookingEntity);
+		return getAllBookings();
+	}
 }
