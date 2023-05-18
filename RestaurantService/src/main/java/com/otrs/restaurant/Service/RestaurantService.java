@@ -34,6 +34,14 @@ public class RestaurantService {
 		return ResponseEntity.status(HttpStatus.OK).body(restaurantrepository.findAll());
 	}
 
+	public ResponseEntity<List<RestaurantEntity>> getDetailsByAddress(String address) 
+			throws Exception
+	{
+		List<RestaurantEntity> rs = restaurantrepository.findByAddress1(address);
+		if(rs.isEmpty()) throw new Exception("No Restaurants nearby");
+		return ResponseEntity.status(HttpStatus.OK).body(rs);
+	}
+	
 	// IF SAME NAME AND ADDRESS ALREADY PRESENT IN DB THEN ERROR ELSE ADD NEW RECORD IN DB
 	public ResponseEntity<?> addData(RestaurantEntity res) throws Exception,MethodArgumentNotValidException
 	{
@@ -102,7 +110,7 @@ public class RestaurantService {
 		  
 		  }
 		 
-		return ResponseEntity.status(HttpStatus.OK).body(filterByAddress);
+		return ResponseEntity.status(HttpStatus.OK).body(FinalList);
 		
 	}
 	
