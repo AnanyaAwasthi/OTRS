@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+import org.springframework.web.client.RestTemplate;
 
 import com.otrs.user.Entity.UserEntity;
 import com.otrs.user.Repository.UserRepository;
 
 @SpringBootApplication
+@EnableFeignClients
 public class UserServiceApplication implements CommandLineRunner{
 
 	public static void main(String[] args) {
@@ -19,6 +23,11 @@ public class UserServiceApplication implements CommandLineRunner{
 	}
 	
 	
+	@Bean
+	public RestTemplate restTemplate()
+	{
+		return new RestTemplate();
+	}
 	@Autowired
 	private UserRepository userRepository;
 	@Override

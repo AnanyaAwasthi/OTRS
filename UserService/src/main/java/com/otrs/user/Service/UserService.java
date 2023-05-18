@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.otrs.user.Entity.UserEntity;
+import com.otrs.user.Exception.RestTemplateErrorHandler;
 import com.otrs.user.Repository.UserRepository;
 
 
@@ -17,6 +19,9 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired 
+	private RestTemplate restTemplate;
 	
 	public ResponseEntity<List<UserEntity>> getAllUsers() throws Exception
 	{
@@ -46,4 +51,12 @@ public class UserService {
 		return getAllUsers();
 	}
 	
+	public ResponseEntity<?> GetRestaurantDetails(long Uid,int capacity) throws Exception
+	{
+		String address = userRepository.findAddressById(Uid);
+		
+		restTemplate.setErrorHandler(new RestTemplateErrorHandler());
+		ResponseEntity<?> res = restTemplate.getForEntity("Http://localhost:8080/restaurant/filterByAddressAndCapacity?Rraddress="+address+"&capacity="+capacity,String.class );
+		return res;
+	}
 }

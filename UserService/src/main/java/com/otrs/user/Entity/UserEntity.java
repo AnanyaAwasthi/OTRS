@@ -24,7 +24,7 @@ public class UserEntity {
 	private String name;
 	@NotEmpty(message="City is required")
 	private String city;
-	@Pattern(regexp="\\\\d{10}", message="Phone number should be of 10 digits, it should not start with 0 and it should not contain special characters")
+	//@Pattern(regexp="\\\\d{10}", message="Phone number should be of 10 digits, it should not start with 0 and it should not contain special characters")
 	private String mobile;
 	@NotNull(message="DOB cannot be null")
 	@Past(message = "DOB cannot be present date")
