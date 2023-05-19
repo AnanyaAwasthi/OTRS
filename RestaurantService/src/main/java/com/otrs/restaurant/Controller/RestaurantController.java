@@ -41,6 +41,14 @@ public class RestaurantController {
 		return restaurantservice.getAllDetails();
 	}
 	
+	//GET RESTAURANT DETAILS BY ID
+	
+	@GetMapping("/getDetailsById")
+	public ResponseEntity<RestaurantEntity> getDetailsByAddress
+	(@RequestParam("id")long id) throws Exception
+	{
+		return restaurantservice.getDetailsById(id);
+	}
 	//GET RESTAURANT DETAILS BY ADDRESS
 	@GetMapping("/getDetailsByAddress")
 	public ResponseEntity<List<RestaurantEntity>> getDetailsByAddress

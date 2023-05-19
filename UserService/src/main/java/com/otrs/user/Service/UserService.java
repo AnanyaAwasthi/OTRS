@@ -59,4 +59,9 @@ public class UserService {
 		ResponseEntity<?> res = restTemplate.getForEntity("Http://localhost:8080/restaurant/filterByAddressAndCapacity?Rraddress="+address+"&capacity="+capacity,String.class );
 		return res;
 	}
+
+	public ResponseEntity<UserEntity> getById(long id) {
+		Optional<UserEntity> us = userRepository.findById(id);
+		return ResponseEntity.status(HttpStatus.OK).body(us.get());
+	}
 }

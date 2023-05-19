@@ -37,6 +37,12 @@ public class UserController {
 	{
 		return userService.addNewUser(user1);
 	}
+	
+	@GetMapping("/getById")
+	public ResponseEntity<UserEntity>getById(@RequestParam("id") long Id)throws Exception
+	{
+		return userService.getById(Id);
+	}
 	//TEST USING RESTTEMPLATE
 	@GetMapping("/GetRestaurantDetails")
 	public ResponseEntity<?> GetRestaurantDetails(@RequestParam ("id") long Uid, @RequestParam("capacity") int capacity) throws Exception

@@ -1,6 +1,7 @@
 package com.otrs.booking.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,5 +32,15 @@ public class BookingService {
 
 		bookingrepository.save(bookingEntity);
 		return getAllBookings();
+	}
+
+	public BookingEntity getByID(long bid) throws Exception{
+		
+		Optional<BookingEntity> booking = bookingrepository.findById(bid);
+		if(booking.isEmpty())
+		{
+			throw new Exception("No Bookings made with ID : "+bid);
+		}
+		return booking.get();
 	}
 }

@@ -113,6 +113,11 @@ public class RestaurantService {
 		return ResponseEntity.status(HttpStatus.OK).body(FinalList);
 		
 	}
+
+	public ResponseEntity<RestaurantEntity> getDetailsById(long id) throws Exception{
+		Optional<RestaurantEntity> res = restaurantrepository.findById(id);
+		return ResponseEntity.status(HttpStatus.OK).body(res.get());
+	}
 	
 	
 }
