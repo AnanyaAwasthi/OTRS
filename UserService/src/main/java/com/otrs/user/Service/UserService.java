@@ -34,18 +34,18 @@ public class UserService {
 	
 	public ResponseEntity<?> addNewUser( UserEntity user1) throws Exception
 	{
-		Optional<UserEntity> user = userRepository.findByName(user1.getName());
+		List<UserEntity> user = userRepository.findByName(user1.getName());
 		if(user.isEmpty())
 		{
 			userRepository.save(user1);
 		}
-		if(user.isPresent()) 
+		if(user.size()>0) 
 		{ throw new Exception("User already present"); } 
 		
-		else if(user1.getMobile().equals(user.get().getMobile()))
-		{
-			throw new Exception("User with "+ user1.getMobile() +" already present");
-		}
+		/*
+		 * else if(user1.getMobile().equals(user.)) { throw new Exception("User with "+
+		 * user1.getMobile() +" already present"); }
+		 */
 
 		
 		return getAllUsers();

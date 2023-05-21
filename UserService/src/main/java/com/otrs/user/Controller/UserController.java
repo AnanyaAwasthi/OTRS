@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.otrs.user.Entity.UserEntity;
 import com.otrs.user.Service.UserService;
+import com.otrs.user.Utils.UserBookFeign;
 import com.otrs.user.Utils.UserRestFeign;
 
 import jakarta.validation.Valid;
@@ -26,6 +27,9 @@ public class UserController {
 	
 	@Autowired
 	private UserRestFeign userRestFeign;
+	
+	@Autowired
+	private UserBookFeign userBookFeign;
 	
 	@GetMapping("/getAllUsers")
 	public ResponseEntity<List<UserEntity>> getAllUsers() throws Exception
@@ -64,4 +68,10 @@ public class UserController {
 		return userRestFeign.GetFeignRestaurantByAddress(address);
 	}
 
+	//TO MAKE A BOOKING USING FEIGN
+	@PostMapping("/MakeABooking")
+	public ResponseEntity<?> MakeABooking(@RequestBody Object obj)
+	{
+		return userBookFeign.MakeABooking(obj);
+	}
 }

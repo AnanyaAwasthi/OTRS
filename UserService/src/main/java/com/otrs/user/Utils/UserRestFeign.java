@@ -15,4 +15,5 @@ public interface UserRestFeign {
 	@GetMapping("/restaurant/getDetailsByAddress")
 	ResponseEntity<?> GetFeignRestaurantByAddress
 	(@RequestParam ("address") String address);
+	
 }
