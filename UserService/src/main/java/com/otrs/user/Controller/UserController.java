@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.otrs.user.Entity.UserEntity;
 import com.otrs.user.Service.UserService;
 import com.otrs.user.Utils.UserBookFeign;
@@ -30,6 +29,7 @@ public class UserController {
 	
 	@Autowired
 	private UserBookFeign userBookFeign;
+	
 	
 	@GetMapping("/getAllUsers")
 	public ResponseEntity<List<UserEntity>> getAllUsers() throws Exception
@@ -72,6 +72,6 @@ public class UserController {
 	@PostMapping("/MakeABooking")
 	public ResponseEntity<?> MakeABooking(@RequestBody Object obj)
 	{
-		return userBookFeign.MakeABooking(obj);
+		return userBookFeign.MakeABooking(obj);	
 	}
 }
